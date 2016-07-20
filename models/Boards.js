@@ -1,4 +1,4 @@
-module.exports = function (sequelize, SeqInit) {
+module.exports = function (store, sequelize, SeqInit) {
     return sequelize.define('Boards', {
         BID: {
             type: SeqInit.STRING(20),
@@ -10,7 +10,7 @@ module.exports = function (sequelize, SeqInit) {
             allowNull: false,
             primaryKey: true,
             references: {
-                model: AcquisitionSys,
+                model: store.AcquisitionSys,
                 key: 'IdAcquisitionSys'
             }
         },
@@ -19,7 +19,7 @@ module.exports = function (sequelize, SeqInit) {
             allowNull: false,
             primaryKey: true,
             references: {
-                model: AcquisitionSys,
+                model: store.AcquisitionSys,
                 key: 'Sciper'
             }
         },

@@ -1,4 +1,4 @@
-module.exports = function (sequelize, SeqInit) {
+module.exports = function (store, sequelize, SeqInit) {
     return sequelize.define('AcquisitionSys', {
         IdAcquisitionSys: {
             type: SeqInit.INTEGER,

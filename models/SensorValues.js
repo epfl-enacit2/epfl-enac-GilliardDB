@@ -1,4 +1,4 @@
-module.exports = function (sequelize,SeqInit) {
+module.exports = function (store, sequelize,SeqInit) {
 return sequelize.define('SensorValues', {
                CreatedAt: {
                    type: SeqInit.DATE,
@@ -11,7 +11,7 @@ return sequelize.define('SensorValues', {
                    allowNull: false,
                    primaryKey: true,
                    references: {
-                       model: Sensors,
+                       model: store.Sensors,
                        key: 'SID'
                    }
                },
@@ -20,7 +20,7 @@ return sequelize.define('SensorValues', {
                   allowNull: false,
                   primaryKey: true,
                   references: {
-                      model: Sensors,
+                      model: store.Sensors,
                       key: 'Boards_BID'
                   }
               },
@@ -29,7 +29,7 @@ return sequelize.define('SensorValues', {
                   allowNull: false,
                   primaryKey: true,
                   references: {
-                      model: Sensors,
+                      model: store.Sensors,
                       key: 'Boards_AcquisitionSys_IdAcquisitionSys'
                   }
               },
@@ -38,7 +38,7 @@ return sequelize.define('SensorValues', {
                   allowNull: false,
                   primaryKey: true,
                   references: {
-                      model: Sensors,
+                      model: store.Sensors,
                       key: 'Boards_AcquisitionSys_Sciper'
                   }
               },

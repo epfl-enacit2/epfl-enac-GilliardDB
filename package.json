@@ -1,0 +1,26 @@
+{
+  "name": "epfl-enac-gilliarddb",
+  "version": "0.0.1",
+  "description": "",
+  "main": "index.js",
+  "directories": {
+    "test": "tests"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/epfl-enacit2/epfl-enac-GilliardDB.git"
+  },
+  "author": "mbonjour",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/epfl-enacit2/epfl-enac-GilliardDB/issues"
+  },
+  "homepage": "https://github.com/epfl-enacit2/epfl-enac-GilliardDB#readme",
+  "dependencies": {
+    "mysql": "^2.11.1",
+    "sequelize": "^3.23.6"
+  }
+}
