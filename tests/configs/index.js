@@ -1,4 +1,5 @@
 //https://github.com/hapijs/joi
+'use strict';
 var fs = require('fs');
 
 module.exports = function (configFilePath) {

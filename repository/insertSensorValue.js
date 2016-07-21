@@ -1,3 +1,4 @@
+'use strict';
 function insertSensorValue(models,configs){
     models.AcquisitionSys
         .findOrCreate(

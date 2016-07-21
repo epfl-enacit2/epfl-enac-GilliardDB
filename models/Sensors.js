@@ -1,3 +1,4 @@
+'use strict';
 module.exports = function (store, sequelize, SeqInit) {
     return sequelize.define('Sensors', {
         SID: {

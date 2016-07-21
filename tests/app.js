@@ -1,3 +1,4 @@
+'use strict';
 var configs = require('./configs')(require('path').join(__dirname, 'configs/configs.json'));
 var store = require('../')(configs.db);
 

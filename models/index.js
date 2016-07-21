@@ -1,3 +1,4 @@
+'use strict';
 module.exports = function (properties) {
     var fs = require("fs");
     var path = require("path");
