@@ -11,9 +11,11 @@ $ npm install epfl-enac-gilliarddb
 Connexion à la DB pour le projet Gilliard (Service d'acquisition de données Arduino)
 
 ## Utilisation
-'''js
-var GilliardDb = require('epfl-enac-gilliarddb)(configs.db);
-'''
+
+```js
+var GilliardDb = require('epfl-enac-gilliarddb')(configs.db);
+```
+
 où 'configs.db' correspond aux configurations pour la connexion àa DB (hostname,name,username,password).
 La variable GilliardDb pourra être utilisée comme un modèle de sequelize à part entière.
 
