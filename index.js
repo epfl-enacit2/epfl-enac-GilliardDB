@@ -1,9 +1,10 @@
+'use strict';
 module.exports = function (dbConfigs) {
+    
+    var SeqInit = require('sequelize');
+    var store = {models:{},repository:{}};
     var fs = require("fs");
     var path = require("path");
-    var SeqInit = require('sequelize');
-    var store = {};
-
     var sequelize = new SeqInit(dbConfigs.name, dbConfigs.username, dbConfigs.password, {
         host: dbConfigs.hostname,
         dialect: 'mysql',
@@ -14,15 +15,7 @@ module.exports = function (dbConfigs) {
         }
     });
 
-    fs.readdirSync(path.join(__dirname, "./models"))
-        .filter(function (file) {
-            return (file.indexOf(".") !== 0);
-        })
-        .forEach(function (file) {
-            var modelName = file.slice(0, -3);
-            var model = require('./models/' + modelName)(store, sequelize, SeqInit);
-            store[model.name] = model;
-        });
-
+    store.models = require('./models')({store:store,sequelize:sequelize,SeqInit:SeqInit});
+   // store.repository = require('./repository')
     return store;
 };

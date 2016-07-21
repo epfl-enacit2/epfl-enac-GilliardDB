@@ -13,15 +13,8 @@ Connexion à la DB pour le projet Gilliard (Service d'acquisition de données Ar
 ## Utilisation
 
 ```js
-var GilliardDb = require('epfl-enac-gilliarddb')(configs.db);
+var GilliardDb = require('epfl-enac-gilliarddb')({ hostname: '', }});
 ```
-
-où *configs.db* correspond à un objet  pour la connexion à la DB qui contient les attributs suivants :
-
-* hostname
-* name
-* username
-* password
 
 La variable GilliardDb pourra être utilisée comme un modèle de sequelize à part entière.
 Comme par exemple (pour ajouter un systéme d'acquisition) :

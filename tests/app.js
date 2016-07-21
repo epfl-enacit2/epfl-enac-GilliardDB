@@ -1,9 +1,17 @@
 var configs = require('./configs')(require('path').join(__dirname, 'configs/configs.json'));
 var store = require('../')(configs.db);
-store.AcquisitionSys
+
+//store.repository.insertSensorValues({models:store.models,configs:configs})
+
+store.models.AcquisitionSys
     .findOrCreate(
     {
-        where: { $and: [{ IdAcquisitionSys: configs.acquisitionSys.id }, { Sciper: configs.acquisitionSys.sciper }] }, defaults: {
+        where: {
+            $and: [
+                { IdAcquisitionSys: configs.acquisitionSys.id },
+                { Sciper: configs.acquisitionSys.sciper }
+            ]
+        }, defaults: {
             IdAcquisitionSys: configs.acquisitionSys.id,
             Sciper: configs.acquisitionSys.sciper,
             Computername: 'enacitpc30',
@@ -12,7 +20,7 @@ store.AcquisitionSys
         }
     });
 configs.acquisitionSys.boards.map(function (board) {
-    store.Boards
+    store.models.Boards
         .findOrCreate(
         {
             where: {
@@ -32,7 +40,7 @@ configs.acquisitionSys.boards.map(function (board) {
         });
 
     board.sensors.map(function (sensor) {
-        store.Sensors
+        store.models.Sensors
             .findOrCreate(
             {
                 where: {
@@ -53,7 +61,7 @@ configs.acquisitionSys.boards.map(function (board) {
                     BoardPins: sensor.BoardPins
                 }
             });
-        store.SensorValues
+        store.models.SensorValues
             .findOrCreate(
             {
                 where: {
