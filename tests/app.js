@@ -1,7 +1,6 @@
 var configs = require('./configs')(require('path').join(__dirname, 'configs/configs.json'));
 var store = require('../')(configs.db);
 store.AcquisitionSys
-    //fonction qui regarde guid existe si oui le retourne, sinon crée en un et le retourne
     .findOrCreate(
     {
         where: { $and: [{ IdAcquisitionSys: configs.acquisitionSys.id }, { Sciper: configs.acquisitionSys.sciper }] }, defaults: {
