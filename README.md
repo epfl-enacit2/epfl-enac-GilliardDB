@@ -13,14 +13,15 @@ Connexion à la DB pour le projet Gilliard (Service d'acquisition de données Ar
 ## Utilisation
 
 ```js
-var GilliardDb = require('epfl-enac-gilliarddb')({ hostname: '', }});
+var GilliardDb = require('epfl-enac-gilliarddb')({ hostname: 'localhost',name:'gilliardDb',username:'user',password:'pass' }});
 ```
 
-La variable GilliardDb pourra être utilisée comme un modèle de sequelize à part entière.
+La variable GilliardDb est composée de 2 parties : 
+* Elle pourra être utilisée comme un modèle de sequelize à part entière *GilliardDb.models*.
 Comme par exemple (pour ajouter un systéme d'acquisition) :
 
 ```js
-GilliardDb.AcquisitionSys
+GilliardDb.models.AcquisitionSys
     .findOrCreate(
     {
         where: { $and: [{ IdAcquisitionSys: "1" }, { Sciper: "240312" }] }, defaults: {
@@ -31,6 +32,12 @@ GilliardDb.AcquisitionSys
             AppVersion: "0.0.1"
         }
     });
+```
+
+* Ou alors elle peut être utilisée pour des méthodes mise à disposition dans le répertoire repository *GilliardDb.repository*
+
+```js
+GilliardDb.repository.insertSensorValues({models:store.models,configs:configs})
 ```
 
 ## Docs
