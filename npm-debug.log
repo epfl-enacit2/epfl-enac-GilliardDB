@@ -1,0 +1,108 @@
+0 info it worked if it ends with ok
+1 verbose cli [ 'C:\\Program Files\\nodejs\\node.exe',
+1 verbose cli   'C:\\Program Files\\nodejs\\node_modules\\npm\\bin\\npm-cli.js',
+1 verbose cli   'publish' ]
+2 info using npm@3.8.9
+3 info using node@v6.2.0
+4 verbose publish [ '.' ]
+5 silly cache add args [ '.', null ]
+6 verbose cache add spec .
+7 silly cache add parsed spec Result {
+7 silly cache add   raw: '.',
+7 silly cache add   scope: null,
+7 silly cache add   name: null,
+7 silly cache add   rawSpec: '.',
+7 silly cache add   spec: 'c:\\Users\\mbonjour\\Desktop\\epfl-enac-GilliardDB\\epfl-enac-GilliardDB',
+7 silly cache add   type: 'directory' }
+8 verbose addLocalDirectory C:\Users\mbonjour\AppData\Roaming\npm-cache\epfl-enac-gilliarddb\0.0.1\package.tgz not in flight; packing
+9 verbose correctMkdir C:\Users\mbonjour\AppData\Roaming\npm-cache correctMkdir not in flight; initializing
+10 info lifecycle epfl-enac-gilliarddb@0.0.1~prepublish: epfl-enac-gilliarddb@0.0.1
+11 silly lifecycle epfl-enac-gilliarddb@0.0.1~prepublish: no script for prepublish, continuing
+12 verbose tar pack [ 'C:\\Users\\mbonjour\\AppData\\Roaming\\npm-cache\\epfl-enac-gilliarddb\\0.0.1\\package.tgz',
+12 verbose tar pack   'c:\\Users\\mbonjour\\Desktop\\epfl-enac-GilliardDB\\epfl-enac-GilliardDB' ]
+13 verbose tarball C:\Users\mbonjour\AppData\Roaming\npm-cache\epfl-enac-gilliarddb\0.0.1\package.tgz
+14 verbose folder c:\Users\mbonjour\Desktop\epfl-enac-GilliardDB\epfl-enac-GilliardDB
+15 verbose addLocalTarball adding from inside cache C:\Users\mbonjour\AppData\Roaming\npm-cache\epfl-enac-gilliarddb\0.0.1\package.tgz
+16 verbose correctMkdir C:\Users\mbonjour\AppData\Roaming\npm-cache correctMkdir not in flight; initializing
+17 silly cache afterAdd epfl-enac-gilliarddb@0.0.1
+18 verbose afterAdd C:\Users\mbonjour\AppData\Roaming\npm-cache\epfl-enac-gilliarddb\0.0.1\package\package.json not in flight; writing
+19 verbose correctMkdir C:\Users\mbonjour\AppData\Roaming\npm-cache correctMkdir not in flight; initializing
+20 verbose afterAdd C:\Users\mbonjour\AppData\Roaming\npm-cache\epfl-enac-gilliarddb\0.0.1\package\package.json written
+21 silly publish { name: 'epfl-enac-gilliarddb',
+21 silly publish   version: '0.0.1',
+21 silly publish   description: '```bash\r $ npm install epfl-enac-gilliarddb\r ```',
+21 silly publish   main: 'index.js',
+21 silly publish   directories: { test: 'tests' },
+21 silly publish   scripts: { test: 'echo "Error: no test specified" && exit 1' },
+21 silly publish   repository:
+21 silly publish    { type: 'git',
+21 silly publish      url: 'git+https://github.com/epfl-enacit2/epfl-enac-GilliardDB.git' },
+21 silly publish   author: { name: 'mbonjour' },
+21 silly publish   license: 'MIT',
+21 silly publish   bugs: { url: 'https://github.com/epfl-enacit2/epfl-enac-GilliardDB/issues' },
+21 silly publish   homepage: 'https://github.com/epfl-enacit2/epfl-enac-GilliardDB#readme',
+21 silly publish   dependencies: { mysql: '^2.11.1', sequelize: '^3.23.6' },
+21 silly publish   readme: '# EPFL-ENAC-GILLIARDDB\r\n\r\n## Installation\r\n\r\n```bash\r\n$ npm install epfl-enac-gilliarddb\r\n```\r\n\r\n## Description\r\n\r\nConnexion à la DB pour le projet Gilliard (Service d\'acquisition de données Arduino)\r\n\r\n## Utilisation\r\n\r\n```js\r\nvar GilliardDb = require(\'epfl-enac-gilliarddb\')({ hostname: \'\', name:\'\', username:\'\', password:\'\'}});\r\n```\r\n\r\nLa variable GilliardDb est composée de 2 parties : \r\n* Elle pourra être utilisée comme un modèle de sequelize à part entière *GilliardDb.models*.\r\nComme par exemple (pour ajouter un systéme d\'acquisition) :\r\n\r\n```js\r\nGilliardDb.models.AcquisitionSys\r\n    .findOrCreate(\r\n    {\r\n        where: { $and: [{ IdAcquisitionSys: "1" }, { Sciper: "240312" }] }, defaults: {\r\n            IdAcquisitionSys: "1",\r\n            Sciper: "240312",\r\n            Computername: \'enacitpc30\',\r\n            Responsible: "mbonjour <mickael.bonjour@epfl.ch>",\r\n            AppVersion: "0.0.1"\r\n        }\r\n    });\r\n```\r\n\r\n* Ou alors elle peut être utilisée pour des méthodes mise à disposition dans le répertoire repository *GilliardDb.repository*\r\n\r\n```js\r\nGilliardDb.repository.insertSensorValues({models:store.models,configs:configs})\r\n```\r\n\r\n## Docs\r\n\r\n* [Modèle de la DB en script SQL](./docs/GilliardDbModel.sql)\r\n* [Modèle de la DB en image PNG (à voir ci-dessous aussi)](./docs/GilliardDbModel.png)\r\n\r\n## Modèle de la DB\r\n\r\n[![Modèle de la DB](./docs/GilliardDbModel.png)](http://enacit2.epfl.ch/)',
+21 silly publish   readmeFilename: 'README.md',
+21 silly publish   gitHead: 'b56a56615f2e39faee159a4458628531e2912557',
+21 silly publish   _id: 'epfl-enac-gilliarddb@0.0.1',
+21 silly publish   _shasum: 'ecf97ec18b47a99d2cc139eda1b2871323e0375c',
+21 silly publish   _from: '.' }
+22 verbose getPublishConfig undefined
+23 silly mapToRegistry name epfl-enac-gilliarddb
+24 silly mapToRegistry using default registry
+25 silly mapToRegistry registry https://registry.npmjs.org/
+26 silly mapToRegistry data Result {
+26 silly mapToRegistry   raw: 'epfl-enac-gilliarddb',
+26 silly mapToRegistry   scope: null,
+26 silly mapToRegistry   name: 'epfl-enac-gilliarddb',
+26 silly mapToRegistry   rawSpec: '',
+26 silly mapToRegistry   spec: 'latest',
+26 silly mapToRegistry   type: 'tag' }
+27 silly mapToRegistry uri https://registry.npmjs.org/epfl-enac-gilliarddb
+28 verbose publish registryBase https://registry.npmjs.org/
+29 silly publish uploading C:\Users\mbonjour\AppData\Roaming\npm-cache\epfl-enac-gilliarddb\0.0.1\package.tgz
+30 verbose request uri https://registry.npmjs.org/epfl-enac-gilliarddb
+31 verbose request sending authorization for write operation
+32 info attempt registry request try #1 at 4:33:17 PM
+33 verbose request using bearer token for auth
+34 verbose request id 1674f87a3e0e0014
+35 http request PUT https://registry.npmjs.org/epfl-enac-gilliarddb
+36 http 403 https://registry.npmjs.org/epfl-enac-gilliarddb
+37 verbose headers { 'content-type': 'application/json',
+37 verbose headers   'cache-control': 'max-age=300',
+37 verbose headers   'content-length': '95',
+37 verbose headers   'accept-ranges': 'bytes',
+37 verbose headers   date: 'Fri, 22 Jul 2016 14:33:19 GMT',
+37 verbose headers   via: '1.1 varnish',
+37 verbose headers   connection: 'keep-alive',
+37 verbose headers   'x-served-by': 'cache-fra1230-FRA',
+37 verbose headers   'x-cache': 'MISS',
+37 verbose headers   'x-cache-hits': '0',
+37 verbose headers   'x-timer': 'S1469197998.467201,VS0,VE1113',
+37 verbose headers   vary: 'Accept-Encoding' }
+38 verbose request invalidating C:\Users\mbonjour\AppData\Roaming\npm-cache\registry.npmjs.org\epfl-enac-gilliarddb on PUT
+39 error publish Failed PUT 403
+40 verbose stack Error: "You cannot publish over the previously published version 0.0.1." : epfl-enac-gilliarddb
+40 verbose stack     at makeError (C:\Program Files\nodejs\node_modules\npm\node_modules\npm-registry-client\lib\request.js:264:12)
+40 verbose stack     at CachingRegistryClient.<anonymous> (C:\Program Files\nodejs\node_modules\npm\node_modules\npm-registry-client\lib\request.js:252:14)
+40 verbose stack     at Request._callback (C:\Program Files\nodejs\node_modules\npm\node_modules\npm-registry-client\lib\request.js:172:14)
+40 verbose stack     at Request.self.callback (C:\Program Files\nodejs\node_modules\npm\node_modules\request\request.js:200:22)
+40 verbose stack     at emitTwo (events.js:106:13)
+40 verbose stack     at Request.emit (events.js:191:7)
+40 verbose stack     at Request.<anonymous> (C:\Program Files\nodejs\node_modules\npm\node_modules\request\request.js:1067:10)
+40 verbose stack     at emitOne (events.js:101:20)
+40 verbose stack     at Request.emit (events.js:188:7)
+40 verbose stack     at IncomingMessage.<anonymous> (C:\Program Files\nodejs\node_modules\npm\node_modules\request\request.js:988:12)
+41 verbose statusCode 403
+42 verbose pkgid epfl-enac-gilliarddb
+43 verbose cwd c:\Users\mbonjour\Desktop\epfl-enac-GilliardDB\epfl-enac-GilliardDB
+44 error Windows_NT 10.0.10586
+45 error argv "C:\\Program Files\\nodejs\\node.exe" "C:\\Program Files\\nodejs\\node_modules\\npm\\bin\\npm-cli.js" "publish"
+46 error node v6.2.0
+47 error npm  v3.8.9
+48 error code E403
+49 error "You cannot publish over the previously published version 0.0.1." : epfl-enac-gilliarddb
+50 error If you need help, you may report this error at:
+50 error     <https://github.com/npm/npm/issues>
+51 verbose exit [ 1, true ]
