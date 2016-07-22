@@ -1,0 +1,1 @@
+Run app.js to test entry 1 acqSys, 2 boards, 1 sensor per board and 1 value per sensor

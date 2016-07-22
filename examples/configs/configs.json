@@ -37,7 +37,7 @@
                 "model": "Arduino DUE", 
                 "sensors": [ 
                     {
-                         "SID": "TC0", 
+                        "SID": "TC0", 
                         "Type": "Temperature", 
                         "Model": "", 
                         "Unit": "° Celsius", 

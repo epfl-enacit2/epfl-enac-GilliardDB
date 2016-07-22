@@ -13,7 +13,7 @@ Connexion à la DB pour le projet Gilliard (Service d'acquisition de données Ar
 ## Utilisation
 
 ```js
-var GilliardDb = require('epfl-enac-gilliarddb')({ hostname: '',name:'',username:'',password:'' }});
+var GilliardDb = require('epfl-enac-gilliarddb')({ hostname: '', name:'', username:'', password:''}});
 ```
 
 La variable GilliardDb est composée de 2 parties : 

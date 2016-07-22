@@ -1,82 +1,153 @@
 'use strict';
-module.exports = function insertSensorValues(properties){
+/**
+ * Insert a value in SensorValue and create associations if it doesn't exist
+ * @param {object} properties - properties should contains : 
+ * {
+ *      models: {
+ *          [modelName1]: [sequelizeModel1]
+ *      },
+ *      configs:{
+ *              "db": {
+ *                  "hostname": "localhost",
+ *                  "username": "user",
+ *                  "password": "pass",
+ *                  "name": "dbName"
+ *              },
+ *              "logging": "console", 
+ *              "acquisitionSys": {
+ *                  "responsible": "mbonjour <mickael.bonjour@epfl.ch>",
+ *                  "sciper": "240312",
+ *                  "AppVersion":"1.0",
+ *                  "boards": [
+ *                      {
+ *                          "port": "COM3",
+ *                          "rate": 9600,
+ *                          "name": "FirstModule", 
+ *                          "model": "Arduino UNO", 
+ *                          "sensors": [ 
+ *                              {
+ *                                  "SID": "TC0", 
+ *                                  "Type": "Temperature", 
+ *                                  "Model": "", 
+ *                                  "Unit": "° Celsius", 
+ *                                  "BoardPins": "12:13",
+ *                              }
+ *                          ]
+ *                      },
+ *                      {
+ *                          "port": "COM4",
+ *                          "rate": 4800,
+ *                          "name": "SecondModule", 
+ *                          "model": "Arduino DUE", 
+ *                          "sensors": [ 
+ *                              {
+ *                                  "SID": "TC0", 
+ *                                  "Type": "Temperature", 
+ *                                  "Model": "", 
+ *                                  "Unit": "° Celsius", 
+ *                                  "BoardPins": "12:13",
+ *                              }
+ *                          ]
+ *                      }
+ *                  ]
+ *              },
+ * 
+ *          },
+ *      acquisitionData:{
+ *          acquisitionSysId:"",
+ *          boardID:"",
+ *          sensorID:"",
+ *          sensorVal:""
+ *      },
+ *      currentBoard:{
+ *      }
+ *      
+ * }
+ */
+module.exports = function insertSensorValue(properties) {
     properties.models.AcquisitionSys
         .findOrCreate(
         {
             where: {
                 $and: [
-                    { IdAcquisitionSys: properties.configs.acquisitionSys.id },
+                    { IdAcquisitionSys: properties.acquisitionData.acquisitionSysId },
                     { Sciper: properties.configs.acquisitionSys.sciper }
                 ]
             }, defaults: {
-                IdAcquisitionSys: properties.configs.acquisitionSys.id,
+                IdAcquisitionSys: properties.acquisitionData.acquisitionSysId,
                 Sciper: properties.configs.acquisitionSys.sciper,
                 Computername: 'enacitpc30',
                 Responsible: properties.configs.acquisitionSys.responsible,
                 AppVersion: properties.configs.acquisitionSys.AppVersion
             }
-        });
-    properties.configs.acquisitionSys.boards.map(function (board) {
-        properties.models.Boards
-            .findOrCreate(
-            {
-                where: {
-                    $and: [
-                        { BID: board.BID },
-                        { AcquisitionSys_IdAcquisitionSys: properties.configs.acquisitionSys.id },
-                        { AcquisitionSys_Sciper: properties.configs.acquisitionSys.sciper }
-                    ]
-                }, defaults: {
-                    BID: board.BID,
-                    AcquisitionSys_IdAcquisitionSys: properties.configs.acquisitionSys.id,
-                    AcquisitionSys_Sciper: properties.configs.acquisitionSys.sciper,
-                    Name: board.name,
-                    Rate: board.rate,
-                    ConnexionPort: board.port
-                }
-            });
+        })
+        .then(function () {
+            properties.models.Boards
+                .findOrCreate(
+                {
+                    where: {
+                        $and: [
+                            { BID: properties.acquisitionData.boardID },
+                            { AcquisitionSys_IdAcquisitionSys: properties.acquisitionData.acquisitionSysId },
+                            { AcquisitionSys_Sciper: properties.configs.acquisitionSys.sciper }
+                        ]
+                    }, defaults: {
+                        BID: properties.acquisitionData.boardID,
+                        AcquisitionSys_IdAcquisitionSys: properties.acquisitionData.acquisitionSysId,
+                        AcquisitionSys_Sciper: properties.configs.acquisitionSys.sciper,
+                        Name: properties.currentBoard.name,
+                        Rate: properties.currentBoard.rate,
+                        ConnexionPort: properties.currentBoard.port
+                    }
+                }).then(function () {
 
-        board.sensors.map(function (sensor) {
-            properties.models.Sensors
-                .findOrCreate(
-                {
-                    where: {
-                        $and: [
-                            { SID: sensor.SID },
-                            { Boards_BID: board.BID },
-                            { Boards_AcquisitionSys_Sciper: properties.configs.acquisitionSys.sciper },
-                            { Boards_AcquisitionSys_IdAcquisitionSys: properties.configs.acquisitionSys.id }
-                        ]
-                    }, defaults: {
-                        SID: sensor.SID,
-                        Boards_BID: board.BID,
-                        Boards_AcquisitionSys_IdAcquisitionSys: properties.configs.acquisitionSys.id,
-                        Boards_AcquisitionSys_Sciper: properties.configs.acquisitionSys.sciper,
-                        Type: sensor.Type,
-                        SensorModel: sensor.Model,
-                        Unit: sensor.Unit,
-                        BoardPins: sensor.BoardPins
+                    var sensorDefaults;
+
+                    //properties.currentBoard.hasOwnProperty('sensors')
+                    if (false) { //Si il existe un sensors[i].SID == properties.acquisitionData.sensorID
+                        sensorDefaults = {
+                            SID: properties.acquisitionData.sensorID,
+                            Boards_BID: properties.acquisitionData.boardID,
+                            Boards_AcquisitionSys_IdAcquisitionSys: properties.acquisitionData.acquisitionSysId,
+                            Boards_AcquisitionSys_Sciper: properties.configs.acquisitionSys.sciper,
+                            Type: sensor.Type,
+                            SensorModel: sensor.Model,
+                            Unit: sensor.Unit,
+                            BoardPins: sensor.BoardPins
+                        };
                     }
-                });
-            properties.models.SensorValues
-                .findOrCreate(
-                {
-                    where: {
-                        $and: [
-                            { CreatedAt: Date() },
-                            { Sensors_SID: sensor.SID },
-                            { Sensors_Boards_BID: board.BID },
-                            { Sensors_Boards_AcquisitionSys_Sciper: properties.configs.acquisitionSys.sciper },
-                            { Sensors_Boards_AcquisitionSys_IdAcquisitionSys: properties.configs.acquisitionSys.id }
-                        ]
-                    }, defaults: {
-                        Sensors_Boards_BID: board.BID,
-                        Sensors_Boards_AcquisitionSys_IdAcquisitionSys: properties.configs.acquisitionSys.id,
-                        Sensors_Boards_AcquisitionSys_Sciper: properties.configs.acquisitionSys.sciper,
-                        Sensors_SID: sensor.SID,
-                        Value: sensor.Value
+                    else {
+                        sensorDefaults = {
+                            SID: properties.acquisitionData.sensorID,
+                            Boards_BID: properties.acquisitionData.boardID,
+                            Boards_AcquisitionSys_IdAcquisitionSys: properties.acquisitionData.acquisitionSysId,
+                            Boards_AcquisitionSys_Sciper: properties.configs.acquisitionSys.sciper,
+                        }
                     }
+
+                    properties.models.Sensors
+                        .findOrCreate(
+                        {
+                            where: {
+                                $and: [
+                                    { SID: properties.acquisitionData.sensorID },
+                                    { Boards_BID: properties.acquisitionData.boardID },
+                                    { Boards_AcquisitionSys_Sciper: properties.configs.acquisitionSys.sciper },
+                                    { Boards_AcquisitionSys_IdAcquisitionSys: properties.acquisitionData.acquisitionSysId }
+                                ]
+                            }, defaults: sensorDefaults
+                        })
+                        .then(function () {
+                            properties.models.SensorValues
+                                .create(
+                                {
+                                    Sensors_Boards_BID: properties.acquisitionData.boardID,
+                                    Sensors_Boards_AcquisitionSys_IdAcquisitionSys: properties.acquisitionData.acquisitionSysId,
+                                    Sensors_Boards_AcquisitionSys_Sciper: properties.configs.acquisitionSys.sciper,
+                                    Sensors_SID: properties.acquisitionData.sensorID,
+                                    Value: properties.acquisitionData.sensorVal
+                                });
+                        });
                 });
         });
-    });
 }
