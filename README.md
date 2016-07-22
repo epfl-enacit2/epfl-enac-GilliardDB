@@ -13,7 +13,7 @@ Connexion à la DB pour le projet Gilliard (Service d'acquisition de données Ar
 ## Utilisation
 
 ```js
-var GilliardDb = require('epfl-enac-gilliarddb')({ hostname: 'localhost',name:'gilliardDb',username:'user',password:'pass' }});
+var GilliardDb = require('epfl-enac-gilliarddb')({ hostname: '',name:'',username:'',password:'' }});
 ```
 
 La variable GilliardDb est composée de 2 parties : 
@@ -45,6 +45,6 @@ GilliardDb.repository.insertSensorValues({models:store.models,configs:configs})
 * [Modèle de la DB en script SQL](./docs/GilliardDbModel.sql)
 * [Modèle de la DB en image PNG (à voir ci-dessous aussi)](./docs/GilliardDbModel.png)
 
-## Modèle
+## Modèle de la DB
 
 [![Modèle de la DB](./docs/GilliardDbModel.png)](http://enacit2.epfl.ch/)
