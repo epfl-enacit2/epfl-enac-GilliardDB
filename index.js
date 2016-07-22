@@ -14,8 +14,8 @@ module.exports = function (dbConfigs) {
             freezeTableName: true
         }
     });
-
+    store.repository = require('./repository')();
     store.models = require('./models')({store:store,sequelize:sequelize,SeqInit:SeqInit});
-   // store.repository = require('./repository')
+    
     return store;
 };

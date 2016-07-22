@@ -1,5 +1,5 @@
 'use strict';
-module.exports = function (properties) {
+module.exports = function () {
     var fs = require("fs");
     var path = require("path");
     var repository = {};
@@ -8,9 +8,9 @@ module.exports = function (properties) {
             return (file.indexOf(".") !== 0) && (file !== "index.js");
         })
         .forEach(function (file) {
-            var modelName = file.slice(0, -3);
-            var model = require('./' + modelName);
-            repository[modelName] = model.modelName;
+            var fileName = file.slice(0, -3);
+            var fileFunction = require('./' + fileName);
+            repository[fileFunction.name] = fileFunction ;
         });
     return repository;
 }
