@@ -102,9 +102,9 @@ module.exports = function insertSensorValue(properties) {
                 }).then(function () {
 
                     var sensorDefaults;
-                    //prout
                     //properties.currentBoard.hasOwnProperty('sensors')
-                    if (false) { //Si il existe un sensors[i].SID == properties.acquisitionData.sensorID
+                    if (properties.currentBoard.hasOwnProperty('sensors')) { 
+                        //Si il existe un sensors[i].SID == properties.acquisitionData.sensorID
                         sensorDefaults = {
                             SID: properties.acquisitionData.sensorID,
                             Boards_BID: properties.acquisitionData.boardID,
