@@ -24,7 +24,7 @@ var GilliardDb = require('epfl-enac-gilliarddb')(
 ```
 
 La variable GilliardDb est composée de 2 parties : 
-* Elle pourra être utilisée comme un modèle de sequelize à part entière *GilliardDb.models*.
+* Elle pourra être utilisée comme un modèle de sequelize à part entière *GilliardDb.models*, ressort un ensemble de modèle sous la forme de la BDD ci-dessous
 Comme par exemple (pour ajouter un systéme d'acquisition) :
 
 ```js
