@@ -61,7 +61,7 @@ GilliardDb.repository.insertSensorValue(
            sensorID:"",
            sensorVal:""
       },
-       currentBoard:{un objet de "boards" correspondant aux configs} 
+       currentBoard:{/*un objet de "boards" correspondant aux configs*/} 
     })
 ```
 
@@ -69,6 +69,7 @@ GilliardDb.repository.insertSensorValue(
 
 * [Modèle de la DB en script SQL](./docs/GilliardDbModel.sql)
 * [Modèle de la DB en image PNG (à voir ci-dessous aussi)](./docs/GilliardDbModel.png)
+* [Lien sur la documentation Sequelize](http://docs.sequelizejs.com/en/latest/)
 
 ## Modèle de la DB
 
