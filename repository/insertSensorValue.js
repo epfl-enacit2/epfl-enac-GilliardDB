@@ -122,7 +122,7 @@ module.exports = function insertSensorValue(properties) {
                     if (properties.currentBoard.hasOwnProperty('sensors')) {
                         //Si il existe un sensors[i].SID == properties.acquisitionData.sensorID
                         if (properties.acquisitionData.sensorID in properties.currentBoard.sensors) {
-                            var sensor=properties.currentBoard.sensors[properties.acquisitionData.sensorID];
+                            var sensor = properties.currentBoard.sensors[properties.acquisitionData.sensorID];
                             sensorDefaults = {
                                 SID: properties.acquisitionData.sensorID,
                                 Boards_BID: properties.acquisitionData.boardID,
@@ -133,6 +133,14 @@ module.exports = function insertSensorValue(properties) {
                                 Unit: sensor.Unit,
                                 BoardPins: sensor.BoardPins
                             };
+                        }
+                        else {
+                            sensorDefaults = {
+                                SID: properties.acquisitionData.sensorID,
+                                Boards_BID: properties.acquisitionData.boardID,
+                                Boards_AcquisitionSys_IdAcquisitionSys: properties.acquisitionData.acquisitionSysId,
+                                Boards_AcquisitionSys_Sciper: properties.configs.acquisitionSys.sciper,
+                            }
                         }
                     }
                     else {
