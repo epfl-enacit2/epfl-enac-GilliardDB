@@ -60,10 +60,26 @@
  *          sensorVal:""
  *      },
  *      currentBoard:{
+ * {
+ *                          "port": "COM3",
+ *                          "rate": 9600,
+ *                          "name": "FirstModule", 
+ *                          "model": "Arduino UNO", 
+ *                          "sensors": [ 
+ *                              {
+ *                                  "SID": "TC0", 
+ *                                  "Type": "Temperature", 
+ *                                  "Model": "", 
+ *                                  "Unit": "° Celsius", 
+ *                                  "BoardPins": "12:13",
+ *                              }
+ *                          ]
+ *                      }
  *      }
  *      
  * }
  */
+
 module.exports = function insertSensorValue(properties) {
     properties.models.AcquisitionSys
         .findOrCreate(
@@ -103,18 +119,21 @@ module.exports = function insertSensorValue(properties) {
 
                     var sensorDefaults;
                     //properties.currentBoard.hasOwnProperty('sensors')
-                    if (properties.currentBoard.hasOwnProperty('sensors')) { 
+                    if (properties.currentBoard.hasOwnProperty('sensors')) {
                         //Si il existe un sensors[i].SID == properties.acquisitionData.sensorID
-                        sensorDefaults = {
-                            SID: properties.acquisitionData.sensorID,
-                            Boards_BID: properties.acquisitionData.boardID,
-                            Boards_AcquisitionSys_IdAcquisitionSys: properties.acquisitionData.acquisitionSysId,
-                            Boards_AcquisitionSys_Sciper: properties.configs.acquisitionSys.sciper,
-                            Type: sensor.Type,
-                            SensorModel: sensor.Model,
-                            Unit: sensor.Unit,
-                            BoardPins: sensor.BoardPins
-                        };
+                        if (properties.acquisitionData.sensorID in properties.currentBoard.sensors) {
+                            var sensor=properties.currentBoard.sensors[properties.acquisitionData.sensorID];
+                            sensorDefaults = {
+                                SID: properties.acquisitionData.sensorID,
+                                Boards_BID: properties.acquisitionData.boardID,
+                                Boards_AcquisitionSys_IdAcquisitionSys: properties.acquisitionData.acquisitionSysId,
+                                Boards_AcquisitionSys_Sciper: properties.configs.acquisitionSys.sciper,
+                                Type: sensor.Type,
+                                SensorModel: sensor.Model,
+                                Unit: sensor.Unit,
+                                BoardPins: sensor.BoardPins
+                            };
+                        }
                     }
                     else {
                         sensorDefaults = {

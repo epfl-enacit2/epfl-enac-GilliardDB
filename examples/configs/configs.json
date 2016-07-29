@@ -18,16 +18,15 @@
                 "rate": 9600,
                 "name": "FirstModule", 
                 "model": "Arduino UNO", 
-                "sensors": [ 
-                    {
-                        "SID": "TC0", 
+                "sensors": {
+                   "TC0": { 
                         "Type": "Temperature", 
                         "Model": "", 
                         "Unit": "° Celsius", 
                         "BoardPins": "12:13",
                         "Value":"5"
                     }
-                ]
+                }
             },
             {
                 "BID":"FEED",
@@ -35,16 +34,15 @@
                 "rate": 4800,
                  "name": "SecondModule", 
                 "model": "Arduino DUE", 
-                "sensors": [ 
-                    {
-                        "SID": "TC0", 
+                "sensors": { 
+                    "TC0":{
                         "Type": "Temperature", 
                         "Model": "", 
                         "Unit": "° Celsius", 
                         "BoardPins": "12:13",
                         "Value":"4"
                     }
-                ]
+                }
             }
         ]
     }

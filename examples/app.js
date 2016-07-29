@@ -9,7 +9,7 @@ configs.acquisitionSys.boards.map(function (board) {
         currentBoard: board,
         acquisitionData: {
             boardID: board.BID,
-            sensorID: "TC1", 
+            sensorID: "TC0", 
             acquisitionSysId: "1",
             sensorVal: "5"
         }
