@@ -2,8 +2,8 @@
 module.exports = function (store, sequelize, SeqInit) {
     return sequelize.define('SensorValues', {
         CreatedAt: {
-            type: SeqInit.DATE,
-            defaultValue: SeqInit.NOW,
+            type: SeqInit.DATE(3),
+            defaultValue: SeqInit.fn('CURRENT_TIMESTAMP',3),
             allowNull: false,
             primaryKey: true
         },

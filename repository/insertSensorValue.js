@@ -92,7 +92,7 @@ module.exports = function insertSensorValue(properties) {
             }, defaults: {
                 IdAcquisitionSys: properties.acquisitionData.acquisitionSysId,
                 Sciper: properties.configs.acquisitionSys.sciper,
-                Computername: 'enacitpc30',
+                Computername: 'enacitpc30', //TODO: Automatique
                 Responsible: properties.configs.acquisitionSys.responsible,
                 AppVersion: properties.configs.acquisitionSys.AppVersion
             }
