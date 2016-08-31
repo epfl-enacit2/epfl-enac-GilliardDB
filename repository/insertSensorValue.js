@@ -79,7 +79,7 @@
  *      
  * }
  */
-
+var os = require ('os');
 module.exports = function insertSensorValue(properties) {
     properties.models.AcquisitionSys
         .findOrCreate(
@@ -92,7 +92,7 @@ module.exports = function insertSensorValue(properties) {
             }, defaults: {
                 IdAcquisitionSys: properties.acquisitionData.acquisitionSysId,
                 Sciper: properties.configs.acquisitionSys.sciper,
-                Computername: 'enacitpc30', //TODO: Automatique
+                Computername: os.hostname(),
                 Responsible: properties.configs.acquisitionSys.responsible,
                 AppVersion: properties.configs.acquisitionSys.AppVersion
             }
