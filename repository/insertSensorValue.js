@@ -7,52 +7,51 @@
  *          [modelName1]: [sequelizeModel1]
  *      },
  *      configs:{
- *              "db": {
- *                  "hostname": "localhost",
- *                  "username": "user",
- *                  "password": "pass",
- *                  "name": "dbName"
- *              },
- *              "logging": "console", 
- *              "acquisitionSys": {
- *                  "responsible": "mbonjour <mickael.bonjour@epfl.ch>",
- *                  "sciper": "240312",
- *                  "AppVersion":"1.0",
- *                  "boards": [
- *                      {
- *                          "port": "COM3",
- *                          "rate": 9600,
- *                          "name": "FirstModule", 
- *                          "model": "Arduino UNO", 
- *                          "sensors": [ 
- *                              {
- *                                  "SID": "TC0", 
- *                                  "Type": "Temperature", 
- *                                  "Model": "", 
- *                                  "Unit": "° Celsius", 
- *                                  "BoardPins": "12:13",
- *                              }
- *                          ]
- *                      },
- *                      {
- *                          "port": "COM4",
- *                          "rate": 4800,
- *                          "name": "SecondModule", 
- *                          "model": "Arduino DUE", 
- *                          "sensors": [ 
- *                              {
- *                                  "SID": "TC0", 
- *                                  "Type": "Temperature", 
- *                                  "Model": "", 
- *                                  "Unit": "° Celsius", 
- *                                  "BoardPins": "12:13",
- *                              }
- *                          ]
- *                      }
- *                  ]
- *              },
- * 
- *          },
+    "db": {
+        "hostname": "localhost",
+        "username": "user",
+        "password": "pass",
+        "name": "dbName"
+    },
+    "logging": "console", 
+    "acquisitionSys": {
+        "responsible": "mbonjour <mickael.bonjour@epfl.ch>",
+        "sciper": "240312",
+        "AppVersion":"1.0",
+        "boards": [
+            {
+                "BID":"1803FU",
+                "port": "COM3",
+                "rate": 9600,
+                "name": "FirstModule", 
+                "model": "Arduino UNO", 
+                "sensors": {
+                   "TC0": { 
+                        "Type": "Temperature", 
+                        "Model": "", 
+                        "Unit": "° Celsius", 
+                        "BoardPins": "12:13",
+                    }
+                }
+            },
+            {
+                "BID":"FEED",
+                "port": "COM4",
+                "rate": 4800,
+                 "name": "SecondModule", 
+                "model": "Arduino DUE", 
+                "sensors": { 
+                    "TC0":{
+                        "Type": "Temperature", 
+                        "Model": "", 
+                        "Unit": "° Celsius", 
+                        "BoardPins": "12:13",
+                    }
+                }
+            }
+        ]
+    }
+},
  *      acquisitionData:{
  *          acquisitionSysId:"",
  *          boardID:"",
@@ -60,26 +59,23 @@
  *          sensorVal:""
  *      },
  *      currentBoard:{
- * {
  *                          "port": "COM3",
  *                          "rate": 9600,
  *                          "name": "FirstModule", 
  *                          "model": "Arduino UNO", 
- *                          "sensors": [ 
- *                              {
- *                                  "SID": "TC0", 
+ *                          "sensors": {
+ *                              "TC0":{ 
  *                                  "Type": "Temperature", 
  *                                  "Model": "", 
  *                                  "Unit": "° Celsius", 
  *                                  "BoardPins": "12:13",
  *                              }
- *                          ]
+ *                          }
  *                      }
- *      }
  *      
  * }
  */
-var os = require ('os');
+var os = require('os');
 module.exports = function insertSensorValue(properties) {
     properties.models.AcquisitionSys
         .findOrCreate(
@@ -121,17 +117,17 @@ module.exports = function insertSensorValue(properties) {
                     //properties.currentBoard.hasOwnProperty('sensors')
                     if (properties.currentBoard.hasOwnProperty('sensors') && properties.acquisitionData.sensorID in properties.currentBoard.sensors) {
                         //Si il existe un sensors[i].SID == properties.acquisitionData.sensorID
-                            var sensor = properties.currentBoard.sensors[properties.acquisitionData.sensorID];
-                            sensorDefaults = {
-                                SID: properties.acquisitionData.sensorID,
-                                Boards_BID: properties.acquisitionData.boardID,
-                                Boards_AcquisitionSys_IdAcquisitionSys: properties.acquisitionData.acquisitionSysId,
-                                Boards_AcquisitionSys_Sciper: properties.configs.acquisitionSys.sciper,
-                                Type: sensor.Type,
-                                SensorModel: sensor.Model,
-                                Unit: sensor.Unit,
-                                BoardPins: sensor.BoardPins
-                            };
+                        var sensor = properties.currentBoard.sensors[properties.acquisitionData.sensorID];
+                        sensorDefaults = {
+                            SID: properties.acquisitionData.sensorID,
+                            Boards_BID: properties.acquisitionData.boardID,
+                            Boards_AcquisitionSys_IdAcquisitionSys: properties.acquisitionData.acquisitionSysId,
+                            Boards_AcquisitionSys_Sciper: properties.configs.acquisitionSys.sciper,
+                            Type: sensor.Type,
+                            SensorModel: sensor.Model,
+                            Unit: sensor.Unit,
+                            BoardPins: sensor.BoardPins
+                        };
                     }
                     else {
                         sensorDefaults = {

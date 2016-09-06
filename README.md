@@ -54,7 +54,7 @@ GilliardDb.models.AcquisitionSys
 GilliardDb.repository.insertSensorValue(
     {
     models:GilliardDb.models,
-    configs:configs,    //équivaut au fichier "configs_sample.json" du projet Gilliard
+    configs:configs,    //équivaut au fichier "configs_sample.json" (modifié et renommé en config.json) du projet Gilliard
     acquisitionData:{
            acquisitionSysId:"",
            boardID:"",
