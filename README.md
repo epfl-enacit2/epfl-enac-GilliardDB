@@ -73,4 +73,4 @@ GilliardDb.repository.insertSensorValue(
 
 ## Modèle de la DB
 
-[![Modèle de la DB](./docs/GilliardDbModels.png)]
+![Modèle de la DB](./docs/GilliardDbModels.png)
