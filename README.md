@@ -67,10 +67,10 @@ GilliardDb.repository.insertSensorValue(
 
 ## Docs
 
-* [Modèle de la DB en script SQL](./docs/GilliardDbModel.sql)
-* [Modèle de la DB en image PNG (à voir ci-dessous aussi)](./docs/GilliardDbModel.png)
+* [Modèle de la DB en script SQL](./docs/GilliardDbModels.sql)
+* [Modèle de la DB en image PNG (à voir ci-dessous aussi)](./docs/GilliardDbModels.png)
 * [Lien sur la documentation Sequelize](http://docs.sequelizejs.com/en/latest/)
 
 ## Modèle de la DB
 
-[![Modèle de la DB](./docs/GilliardDbModel.png)](http://enacit2.epfl.ch/)
+[![Modèle de la DB](./docs/GilliardDbModels.png)]
